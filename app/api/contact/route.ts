@@ -3,13 +3,14 @@ import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = (await req.json()) as {
+    const { name, email, message, gender } = (await req.json()) as {
       name: string;
       email: string;
       message: string;
+      gender: string;
     };
 
-    if (!name || !email) {
+    if (!name || !email || !gender) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -37,6 +38,10 @@ export async function POST(req: NextRequest) {
             <tr>
               <td style="padding:8px 0;color:#555"><strong>Email</strong></td>
               <td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding:8px 0;color:#555"><strong>Gender</strong></td>
+              <td style="padding:8px 0">${gender}</td>
             </tr>
             <tr>
               <td style="padding:8px 0;color:#555;vertical-align:top"><strong>Message</strong></td>

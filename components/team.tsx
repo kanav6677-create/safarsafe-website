@@ -67,7 +67,7 @@ export function Team() {
                 alt="Kanav Gupta"
                 fill
                 sizes="112px"
-                className="origin-top scale-[1.25] object-cover object-[50%_6%]"
+                className="object-cover object-[50%_20%]"
               />
             </div>
             <h3 className="mt-6 text-[17px] font-semibold text-foreground">Kanav Gupta</h3>

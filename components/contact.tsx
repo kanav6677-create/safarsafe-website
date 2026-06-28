@@ -60,12 +60,12 @@ const CONTACT_LINKS = [
 ] as const;
 
 export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", gender: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
@@ -80,7 +80,7 @@ export function Contact() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("Request failed");
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", message: "", gender: "" });
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again in a few minutes.");
@@ -244,6 +244,25 @@ export function Contact() {
                     placeholder="your@email.com"
                     className="w-full rounded-xl border border-border bg-white/70 px-4 py-3 text-[14px] text-foreground placeholder:text-muted-foreground/50 outline-none ring-0 transition focus:ring-2 focus:ring-secondary/30"
                   />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="gender" className="text-[12.5px] font-medium text-foreground/60">
+                    Gender <span className="text-foreground/40">(required)</span>
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    required
+                    value={form.gender}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-border bg-white/70 px-4 py-3 text-[14px] text-foreground outline-none ring-0 transition focus:ring-2 focus:ring-secondary/30"
+                  >
+                    <option value="" disabled>Select gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                  </select>
                 </div>
 
                 <div className="flex flex-col gap-2">

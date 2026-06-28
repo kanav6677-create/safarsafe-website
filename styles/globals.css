@@ -23,46 +23,41 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --font-sans: var(--font-geist-sans);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --font-sans: var(--font-jakarta);
+  --font-heading: var(--font-sora);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 6px);
 }
 
 :root {
-  color-scheme: dark;
-  --background: 231 63% 5%;
-  --foreground: 0 0% 100%;
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  color-scheme: light;
+  /* Soft, warm off-white with the faintest lavender tint */
+  --background: 280 30% 99%;
+  --foreground: 224 35% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 35% 14%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 35% 14%;
   --primary: 221 83% 53%;
   --primary-foreground: 0 0% 100%;
   --secondary: 262 83% 58%;
   --secondary-foreground: 0 0% 100%;
   --accent: 330 81% 60%;
   --accent-foreground: 0 0% 100%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 72%;
+  --muted: 240 30% 96%;
+  --muted-foreground: 222 14% 46%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --border: 217 33% 18%;
-  --input: 217 33% 18%;
-  --ring: 221 83% 62%;
-  --radius: 1rem;
-  --safarsafe-gradient: linear-gradient(
-    135deg,
-    hsl(var(--primary)) 0%,
-    hsl(var(--secondary)) 52%,
-    hsl(var(--accent)) 100%
-  );
+  --border: 240 24% 92%;
+  --input: 240 24% 92%;
+  --ring: 221 83% 60%;
+  --radius: 1.25rem;
 }
 
 * {
   box-sizing: border-box;
-  border-color: hsl(var(--border));
 }
 
 html {
@@ -75,57 +70,48 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at top left, hsl(var(--primary) / 0.18), transparent 34rem),
-    radial-gradient(circle at bottom right, hsl(var(--secondary) / 0.15), transparent 32rem),
-    hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  /* Soft pink + blue + lavender washes over a warm off-white */
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(
+      52rem 40rem at 88% -8%,
+      hsl(221 90% 62% / 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      48rem 38rem at 6% 4%,
+      hsl(330 85% 66% / 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      60rem 46rem at 50% 108%,
+      hsl(262 78% 70% / 0.09),
+      transparent 70%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sora), system-ui, sans-serif;
+}
+
 ::selection {
-  background: hsl(var(--primary) / 0.34);
+  background: hsl(var(--primary) / 0.16);
   color: hsl(var(--foreground));
 }
 
-/* ─── Hero dot-grid overlay ─────────────────────────────────────── */
-.hero-grid {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.14) 1px,
-    transparent 1px
-  );
-  background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(
-    ellipse 85% 85% at 50% 45%,
-    black 30%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 85% 85% at 50% 45%,
-    black 30%,
-    transparent 100%
-  );
-}
-
-/* ─── Gradient shimmer (for future use) ──────────────────────────── */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent 75%
-  );
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
+/* Thin gradient hairline used on glass surfaces (no harsh borders) */
+.ring-hairline {
+  box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.6);
 }
 
 @media (prefers-reduced-motion: reduce) {

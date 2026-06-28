@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Sora, Plus_Jakarta_Sans } from "next/font/google";
 
 import { siteConfig } from "@/lib/site";
+import { IntroProvider } from "@/components/intro-provider";
 import "@/styles/globals.css";
 
-const geistSans = Geist({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -57,8 +64,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050816",
-  colorScheme: "dark",
+  themeColor: "#FCFBFE",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -69,9 +76,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className={`${geistSans.variable} min-h-dvh font-sans antialiased`}>
-        {children}
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body
+        className={`${jakarta.variable} ${sora.variable} min-h-dvh font-sans antialiased`}
+      >
+        <IntroProvider>{children}</IntroProvider>
       </body>
     </html>
   );

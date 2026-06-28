@@ -58,11 +58,15 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        glow: "0 0 48px hsl(var(--primary) / 0.22)",
-        premium: "0 24px 80px hsl(221 83% 8% / 0.42)",
+        soft: "0 8px 30px -12px hsl(231 40% 30% / 0.14)",
+        card: "0 14px 44px -18px hsl(231 40% 28% / 0.18)",
+        premium: "0 30px 70px -28px hsl(231 48% 30% / 0.26)",
+        phone: "0 40px 90px -30px hsl(231 50% 30% / 0.34)",
+        glow: "0 14px 44px -18px hsl(262 60% 50% / 0.22)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
+        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        heading: ["var(--font-sora)", "system-ui", "sans-serif"],
       },
       keyframes: {
         "fade-up": {

@@ -13,11 +13,12 @@ const buttonVariants = cva(
           "bg-foreground text-background shadow-soft hover:shadow-card hover:-translate-y-0.5",
         primary:
           "bg-primary text-primary-foreground shadow-soft hover:bg-primary/92 hover:shadow-card hover:-translate-y-0.5",
+        pink: "text-white shadow-[0_10px_30px_-10px_rgba(236,72,153,0.5)] bg-[linear-gradient(135deg,#F9A8D4_0%,#F472B6_38%,#EC4899_100%)] hover:-translate-y-0.5 hover:brightness-[1.03] hover:shadow-[0_16px_40px_-12px_rgba(236,72,153,0.55)]",
         secondary:
           "bg-secondary text-secondary-foreground shadow-soft hover:bg-secondary/92 hover:-translate-y-0.5",
         accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent/92",
         outline:
-          "bg-white/70 text-foreground backdrop-blur-md ring-1 ring-black/[0.06] shadow-soft hover:bg-white hover:-translate-y-0.5",
+          "bg-white/60 text-foreground backdrop-blur-md ring-1 ring-foreground/[0.08] shadow-soft hover:bg-white hover:ring-foreground/[0.12] hover:-translate-y-0.5",
         ghost: "text-foreground hover:bg-black/[0.04]",
         link: "text-primary underline-offset-4 hover:underline",
       },

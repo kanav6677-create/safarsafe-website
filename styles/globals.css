@@ -25,6 +25,7 @@
   --color-ring: hsl(var(--ring));
   --font-sans: var(--font-jakarta);
   --font-heading: var(--font-sora);
+  --font-numeric: var(--font-geist);
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
@@ -33,8 +34,8 @@
 
 :root {
   color-scheme: light;
-  /* Soft, warm off-white with the faintest lavender tint */
-  --background: 280 30% 99%;
+  /* Warm off-white, ~96% white with the faintest lavender tint */
+  --background: 280 28% 98.5%;
   --foreground: 224 35% 14%;
   --card: 0 0% 100%;
   --card-foreground: 224 35% 14%;
@@ -72,23 +73,23 @@ body {
   overflow-x: hidden;
   color: hsl(var(--foreground));
   font-family: var(--font-jakarta), system-ui, sans-serif;
-  /* Soft pink + blue + lavender washes over a warm off-white */
+  /* Extremely subtle pink + blue + lavender washes over warm off-white */
   background-color: hsl(var(--background));
   background-image:
     radial-gradient(
-      52rem 40rem at 88% -8%,
-      hsl(221 90% 62% / 0.1),
-      transparent 70%
+      54rem 42rem at 90% -10%,
+      hsl(221 90% 62% / 0.055),
+      transparent 68%
     ),
     radial-gradient(
-      48rem 38rem at 6% 4%,
-      hsl(330 85% 66% / 0.1),
-      transparent 70%
+      48rem 38rem at 4% 2%,
+      hsl(330 85% 66% / 0.05),
+      transparent 66%
     ),
     radial-gradient(
-      60rem 46rem at 50% 108%,
-      hsl(262 78% 70% / 0.09),
-      transparent 70%
+      62rem 48rem at 50% 112%,
+      hsl(262 78% 70% / 0.045),
+      transparent 68%
     );
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -112,6 +113,20 @@ h4 {
 /* Thin gradient hairline used on glass surfaces (no harsh borders) */
 .ring-hairline {
   box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.6);
+}
+
+/* Very subtle static film grain — adds warmth, never animates */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+}
+
+/* Numerals use Geist with tabular figures */
+.tnum {
+  font-family: var(--font-geist), ui-monospace, monospace;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (prefers-reduced-motion: reduce) {

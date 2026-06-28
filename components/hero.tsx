@@ -8,7 +8,7 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { ArrowRight, PlayCircle, Check } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { IPhoneMockup } from "@/components/iphone-mockup";
@@ -36,12 +36,12 @@ const SCREENS = {
 
 const COPY: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
 };
 
 const ITEM: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
 const ASSURANCES = ["Free during beta", "Privacy-first", "Built women-first"];
@@ -50,16 +50,16 @@ export function Hero() {
   const { ready } = useIntro();
   const stageRef = useRef<HTMLDivElement>(null);
 
-  // Subtle, purposeful parallax — a gentle 3D tilt of the phone cluster.
+  // A single, slow, purposeful 3D tilt of the phone cluster toward the cursor.
   const px = useMotionValue(0);
   const py = useMotionValue(0);
-  const rotY = useSpring(useTransform(px, [-1, 1], [7, -7]), {
-    stiffness: 60,
-    damping: 18,
+  const rotY = useSpring(useTransform(px, [-1, 1], [5, -5]), {
+    stiffness: 40,
+    damping: 22,
   });
-  const rotX = useSpring(useTransform(py, [-1, 1], [-5, 5]), {
-    stiffness: 60,
-    damping: 18,
+  const rotX = useSpring(useTransform(py, [-1, 1], [-4, 4]), {
+    stiffness: 40,
+    damping: 22,
   });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -80,7 +80,13 @@ export function Hero() {
       id="home"
       className="relative flex min-h-dvh items-center overflow-hidden"
     >
-      <div className="mx-auto grid w-full max-w-[1180px] items-center gap-14 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pb-24 lg:pt-28 xl:gap-16">
+      {/* Subtle static film grain */}
+      <div
+        aria-hidden="true"
+        className="grain pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+      />
+
+      <div className="relative z-10 mx-auto grid w-full max-w-[1180px] items-center gap-14 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pb-24 lg:pt-28 xl:gap-16">
         {/* ── Copy ─────────────────────────────────────────────── */}
         <motion.div
           variants={COPY}
@@ -91,27 +97,27 @@ export function Hero() {
           {/* Eyebrow */}
           <motion.span
             variants={ITEM}
-            className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-[12px] font-semibold text-foreground/70 shadow-soft ring-1 ring-black/[0.04] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-[12px] font-semibold tracking-[0.01em] text-foreground/70 shadow-soft ring-1 ring-black/[0.04] backdrop-blur"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent" />
+            <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-secondary to-accent" />
             Women-first travel safety
           </motion.span>
 
           {/* Headline */}
           <motion.h1
             variants={ITEM}
-            className="mt-6 text-balance text-[2.6rem] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[3.2rem] lg:text-[3.4rem] xl:text-[3.9rem]"
+            className="mt-7 text-balance text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-foreground sm:text-[3.3rem] lg:text-[3.5rem] xl:text-[4rem]"
           >
-            Plan safer journeys,{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              before you ever leave.
+            Travel safer.{" "}
+            <span className="bg-[linear-gradient(115deg,#7C3AED_0%,#DB2777_52%,#EC4899_100%)] bg-clip-text text-transparent">
+              Before your journey begins.
             </span>
           </motion.h1>
 
           {/* Tagline */}
           <motion.p
             variants={ITEM}
-            className="mt-5 flex items-center gap-3 text-[1.05rem] font-medium text-foreground/75"
+            className="mt-6 flex items-center gap-3 text-[1.1rem] font-medium text-foreground/75"
           >
             <span className="h-5 w-px bg-foreground/20" />
             Har Safar. Thoda Zyada Safe.
@@ -120,24 +126,29 @@ export function Hero() {
           {/* Description */}
           <motion.p
             variants={ITEM}
-            className="mt-5 max-w-[30rem] text-[15.5px] leading-[1.75] text-muted-foreground"
+            className="mt-6 max-w-[31rem] text-[15.5px] leading-[1.8] text-muted-foreground"
           >
             SafarSafe helps women understand how safe a place really is before
-            the trip begins. Check your route, share your journey with people you
-            trust, and reach them the moment something doesn&apos;t feel right.
+            the trip begins — so you can plan your route, share your journey with
+            people you trust, and reach them the moment something feels off.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={ITEM} className="mt-8 flex flex-wrap items-center gap-3">
-            <Button variant="primary" size="lg" className="group gap-2">
-              Join Beta
+          <motion.div
+            variants={ITEM}
+            className="mt-9 flex flex-wrap items-center gap-3"
+          >
+            <Button variant="pink" size="lg" className="group gap-2">
+              Join the Beta
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-0.5"
               />
             </Button>
-            <Button variant="outline" size="lg" className="gap-2">
-              <PlayCircle size={16} className="text-primary" />
+            <Button variant="outline" size="lg" className="gap-2.5">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground/8">
+                <Play size={9} className="ml-px fill-foreground/70 text-foreground/70" />
+              </span>
               See How It Works
             </Button>
           </motion.div>
@@ -145,16 +156,17 @@ export function Hero() {
           {/* Assurances */}
           <motion.ul
             variants={ITEM}
-            className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2"
+            className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2"
           >
-            {ASSURANCES.map((a) => (
+            {ASSURANCES.map((a, i) => (
               <li
                 key={a}
-                className="flex items-center gap-1.5 text-[12.5px] font-medium text-muted-foreground"
+                className="flex items-center gap-2 text-[12.5px] font-medium text-muted-foreground"
               >
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/12 text-emerald-600">
-                  <Check size={11} strokeWidth={3} />
-                </span>
+                {i > 0 && (
+                  <span className="mr-4 hidden h-1 w-1 rounded-full bg-foreground/20 sm:inline-block" />
+                )}
+                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-br from-secondary to-accent" />
                 {a}
               </li>
             ))}
@@ -166,67 +178,61 @@ export function Hero() {
           ref={stageRef}
           onMouseMove={onMove}
           onMouseLeave={onLeave}
-          className="relative flex min-h-[440px] items-center justify-center lg:min-h-[560px]"
-          style={{ perspective: 1200 }}
+          className="relative flex min-h-[460px] items-center justify-center lg:min-h-[580px]"
+          style={{ perspective: 1300 }}
         >
+          {/* Soft contact shadow grounding the cluster */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-[62%] h-14 w-[58%] -translate-x-1/2 rounded-[50%] bg-foreground/12 blur-2xl"
+          />
+
           <motion.div
             className="relative"
             style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
           >
             {/* Left — Profile (rear) */}
             <motion.div
-              className="absolute left-[-104px] top-16 z-10 hidden lg:block"
-              initial={{ opacity: 0, y: 24 }}
-              animate={ready ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
+              className="absolute left-[-118px] top-[78px] z-10 hidden lg:block"
+              initial={{ opacity: 0, x: 26, y: 14 }}
+              animate={ready ? { opacity: 1, x: 0, y: 0 } : {}}
+              transition={{ duration: 1.1, ease: EASE, delay: 0.45 }}
             >
-              <motion.div
-                animate={{ y: [0, -4, 0] }}
-                transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
-                style={{ rotate: -8 }}
-              >
-                <IPhoneMockup className="w-[196px]" screenshot={SCREENS.profile} />
-              </motion.div>
+              <div style={{ transform: "rotate(-9deg)" }}>
+                <IPhoneMockup
+                  className="w-[186px] blur-[0.4px]"
+                  screenshot={SCREENS.profile}
+                />
+              </div>
             </motion.div>
 
             {/* Right — Emergency Contacts (third) */}
             <motion.div
-              className="absolute right-[-104px] top-24 z-10 hidden lg:block"
-              initial={{ opacity: 0, y: 24 }}
-              animate={ready ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.42 }}
+              className="absolute right-[-118px] top-[104px] z-10 hidden lg:block"
+              initial={{ opacity: 0, x: -26, y: 14 }}
+              animate={ready ? { opacity: 1, x: 0, y: 0 } : {}}
+              transition={{ duration: 1.1, ease: EASE, delay: 0.58 }}
             >
-              <motion.div
-                animate={{ y: [0, -4, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 10,
-                  ease: "easeInOut",
-                  delay: 1.2,
-                }}
-                style={{ rotate: 8 }}
-              >
-                <IPhoneMockup className="w-[196px]" screenshot={SCREENS.emergency} />
-              </motion.div>
+              <div style={{ transform: "rotate(9deg)" }}>
+                <IPhoneMockup
+                  className="w-[186px] blur-[0.4px]"
+                  screenshot={SCREENS.emergency}
+                />
+              </div>
             </motion.div>
 
             {/* Center — Map (front) */}
             <motion.div
               className="relative z-20"
-              initial={{ opacity: 0, y: 28, scale: 0.97 }}
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
               animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.9, ease: EASE, delay: 0.18 }}
+              transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
             >
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-              >
-                <IPhoneMockup
-                  className="w-[230px] sm:w-[244px]"
-                  screenshot={SCREENS.map}
-                  priority
-                />
-              </motion.div>
+              <IPhoneMockup
+                className="w-[232px] sm:w-[248px]"
+                screenshot={SCREENS.map}
+                priority
+              />
             </motion.div>
           </motion.div>
         </div>

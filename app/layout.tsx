@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Plus_Jakarta_Sans } from "next/font/google";
+import { Sora, Plus_Jakarta_Sans, Geist } from "next/font/google";
 
 import { siteConfig } from "@/lib/site";
 import { IntroProvider } from "@/components/intro-provider";
@@ -14,6 +14,13 @@ const jakarta = Plus_Jakarta_Sans({
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
+  display: "swap",
+});
+
+// Used for numerals (`.tnum`)
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
   display: "swap",
 });
 
@@ -86,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${jakarta.variable} ${sora.variable} min-h-dvh font-sans antialiased`}
+        className={`${jakarta.variable} ${sora.variable} ${geist.variable} min-h-dvh font-sans antialiased`}
       >
         <IntroProvider>{children}</IntroProvider>
       </body>

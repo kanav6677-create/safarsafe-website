@@ -12,10 +12,27 @@ import { ArrowRight, PlayCircle, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { IPhoneMockup } from "@/components/iphone-mockup";
-import { MapScreen, ProfileScreen, EmergencyScreen } from "@/components/app-screens";
 import { useIntro } from "@/components/intro-provider";
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+/**
+ * Official app screenshots.
+ *
+ * TODO(assets): Add the uploaded screenshots at these exact paths. Use the
+ * provided files as-is — do not crop, recreate, or fake any interface.
+ *   public/images/app/map.png        — Home / map + safe route
+ *   public/images/app/profile.png    — Profile
+ *   public/images/app/emergency.png  — Emergency Contacts
+ */
+const SCREENS = {
+  map: { src: "/images/app/map.png", alt: "SafarSafe home map with safe route" },
+  profile: { src: "/images/app/profile.png", alt: "SafarSafe profile screen" },
+  emergency: {
+    src: "/images/app/emergency.png",
+    alt: "SafarSafe emergency contacts screen",
+  },
+} as const;
 
 const COPY: Variants = {
   hidden: {},
@@ -152,79 +169,63 @@ export function Hero() {
           className="relative flex min-h-[440px] items-center justify-center lg:min-h-[560px]"
           style={{ perspective: 1200 }}
         >
-          {/* Soft ambient stage light (subtle, not neon) */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 flex items-center justify-center"
-          >
-            <div
-              className="h-[360px] w-[360px] rounded-full opacity-70 blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(circle at 40% 35%, rgba(37,99,235,0.16), transparent 60%), radial-gradient(circle at 65% 70%, rgba(236,72,153,0.14), transparent 60%)",
-              }}
-            />
-          </div>
-
           <motion.div
             className="relative"
             style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
           >
-            {/* Left — Emergency (behind) */}
+            {/* Left — Profile (rear) */}
             <motion.div
-              className="absolute left-[-104px] top-14 z-10 hidden lg:block"
-              initial={{ opacity: 0, y: 26 }}
+              className="absolute left-[-104px] top-16 z-10 hidden lg:block"
+              initial={{ opacity: 0, y: 24 }}
               animate={ready ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
             >
               <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-                style={{ rotate: -9 }}
+                animate={{ y: [0, -4, 0] }}
+                transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
+                style={{ rotate: -8 }}
               >
-                <IPhoneMockup className="w-[196px] opacity-95">
-                  <EmergencyScreen />
-                </IPhoneMockup>
+                <IPhoneMockup className="w-[196px]" screenshot={SCREENS.profile} />
               </motion.div>
             </motion.div>
 
-            {/* Right — Profile (behind) */}
+            {/* Right — Emergency Contacts (third) */}
             <motion.div
               className="absolute right-[-104px] top-24 z-10 hidden lg:block"
-              initial={{ opacity: 0, y: 26 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={ready ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: EASE, delay: 0.42 }}
             >
               <motion.div
-                animate={{ y: [0, -6, 0] }}
+                animate={{ y: [0, -4, 0] }}
                 transition={{
                   repeat: Infinity,
-                  duration: 9,
+                  duration: 10,
                   ease: "easeInOut",
-                  delay: 1,
+                  delay: 1.2,
                 }}
-                style={{ rotate: 9 }}
+                style={{ rotate: 8 }}
               >
-                <IPhoneMockup className="w-[196px] opacity-95">
-                  <ProfileScreen />
-                </IPhoneMockup>
+                <IPhoneMockup className="w-[196px]" screenshot={SCREENS.emergency} />
               </motion.div>
             </motion.div>
 
             {/* Center — Map (front) */}
             <motion.div
               className="relative z-20"
-              initial={{ opacity: 0, y: 30, scale: 0.97 }}
+              initial={{ opacity: 0, y: 28, scale: 0.97 }}
               animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.9, ease: EASE, delay: 0.18 }}
             >
               <motion.div
-                animate={{ y: [0, -7, 0] }}
-                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
               >
-                <IPhoneMockup className="w-[230px] sm:w-[244px]">
-                  <MapScreen />
-                </IPhoneMockup>
+                <IPhoneMockup
+                  className="w-[230px] sm:w-[244px]"
+                  screenshot={SCREENS.map}
+                  priority
+                />
               </motion.div>
             </motion.div>
           </motion.div>

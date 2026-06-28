@@ -28,6 +28,14 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  // TODO(assets): icons reference the official logo at
+  // public/images/logo/safarsafe-logo.png. For a crisp favicon you may
+  // later add app/icon.png and app/apple-icon.png exported from the logo.
+  icons: {
+    icon: [{ url: "/images/logo/safarsafe-logo.png" }],
+    shortcut: [{ url: "/images/logo/safarsafe-logo.png" }],
+    apple: [{ url: "/images/logo/safarsafe-logo.png" }],
+  },
   keywords: [
     "SafarSafe",
     "travel safety",

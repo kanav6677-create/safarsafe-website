@@ -66,8 +66,9 @@ export function Navbar() {
             className="shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Logo
-              markClassName="h-8 w-8"
-              wordmarkClassName="text-[1.05rem]"
+              markClassName="h-9 w-9"
+              wordmarkClassName="text-[1.08rem]"
+              priority
             />
           </Link>
 

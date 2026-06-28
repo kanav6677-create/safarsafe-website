@@ -1,0 +1,52 @@
+{
+  "name": "safarsafe-website",
+  "version": "0.1.0",
+  "description": "Official website for SafarSafe.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanav6677-create/safarsafe-website.git"
+  },
+  "keywords": [
+    "SafarSafe",
+    "travel safety",
+    "nextjs",
+    "vercel"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/kanav6677-create/safarsafe-website/issues"
+  },
+  "homepage": "https://github.com/kanav6677-create/safarsafe-website#readme",
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.42.0",
+    "lucide-react": "^1.21.0",
+    "next": "^15.5.19",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.2",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^15.5.19",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3"
+  }
+}

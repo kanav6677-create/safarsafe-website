@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  *   public/images/logo/safarsafe-logo.png
  * Use the uploaded brand asset as-is. Do not substitute or recreate it.
  */
-export const LOGO_SRC = "/images/logo/safarsafe-logo.png";
+export const LOGO_SRC = "/images/logo/safarsafe-logo.png"; // official brand asset
 
 /**
  * The official SafarSafe logo mark.

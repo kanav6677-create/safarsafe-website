@@ -16,20 +16,12 @@ import { useIntro } from "@/components/intro-provider";
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-/**
- * Official app screenshots.
- *
- * TODO(assets): Add the uploaded screenshots at these exact paths. Use the
- * provided files as-is — do not crop, recreate, or fake any interface.
- *   public/images/app/map.png        — Home / map + safe route
- *   public/images/app/profile.png    — Profile
- *   public/images/app/emergency.png  — Emergency Contacts
- */
+/** Official app screenshots — exact filenames as uploaded to the repository. */
 const SCREENS = {
-  map: { src: "/images/app/map.png", alt: "SafarSafe home map with safe route" },
-  profile: { src: "/images/app/profile.png", alt: "SafarSafe profile screen" },
+  map: { src: "/images/app/App ss 1.jpg", alt: "SafarSafe home map with safe route" },
+  profile: { src: "/images/app/app ss 2.jpg", alt: "SafarSafe profile screen" },
   emergency: {
-    src: "/images/app/emergency.png",
+    src: "/images/app/app ss 3.jpg",
     alt: "SafarSafe emergency contacts screen",
   },
 } as const;

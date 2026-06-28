@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -12,24 +12,27 @@ import { ArrowRight, Play } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { IPhoneMockup } from "@/components/iphone-mockup";
+import { VideoModal } from "@/components/video-modal";
 import { useIntro } from "@/components/intro-provider";
+
+function scrollToContact() {
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+}
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 /**
- * Official app screenshots.
- *
- * TODO(assets): Add the uploaded screenshots at these exact paths. Use the
- * provided files as-is — do not crop, recreate, or fake any interface.
- *   public/images/app/map.png        — Home / map + safe route
- *   public/images/app/profile.png    — Profile
- *   public/images/app/emergency.png  — Emergency Contacts
+ * Official app screenshots. Uses the uploaded files as-is, do not crop,
+ * recreate, or fake any interface.
+ *   public/images/app/App ss 1.jpg   : Home / map + safe route
+ *   public/images/app/app ss 2.jpg   : Profile
+ *   public/images/app/app ss 3.jpg   : Emergency Contacts
  */
 const SCREENS = {
-  map: { src: "/images/app/map.png", alt: "SafarSafe home map with safe route" },
-  profile: { src: "/images/app/profile.png", alt: "SafarSafe profile screen" },
+  map: { src: "/images/app/App ss 1.jpg", alt: "SafarSafe home map with safe route" },
+  profile: { src: "/images/app/app ss 2.jpg", alt: "SafarSafe profile screen" },
   emergency: {
-    src: "/images/app/emergency.png",
+    src: "/images/app/app ss 3.jpg",
     alt: "SafarSafe emergency contacts screen",
   },
 } as const;
@@ -49,6 +52,7 @@ const ASSURANCES = ["Free during beta", "Privacy-first", "Built women-first"];
 export function Hero() {
   const { ready } = useIntro();
   const stageRef = useRef<HTMLDivElement>(null);
+  const [videoOpen, setVideoOpen] = useState(false);
 
   // A single, slow, purposeful 3D tilt of the phone cluster toward the cursor.
   const px = useMotionValue(0);
@@ -129,7 +133,7 @@ export function Hero() {
             className="mt-6 max-w-[31rem] text-[15.5px] leading-[1.8] text-muted-foreground"
           >
             SafarSafe helps women understand how safe a place really is before
-            the trip begins — so you can plan your route, share your journey with
+            the trip begins. You can plan your route, share your journey with
             people you trust, and reach them the moment something feels off.
           </motion.p>
 
@@ -138,14 +142,14 @@ export function Hero() {
             variants={ITEM}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <Button variant="pink" size="lg" className="group gap-2">
+            <Button variant="pink" size="lg" className="group gap-2" onClick={scrollToContact}>
               Join the Beta
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-0.5"
               />
             </Button>
-            <Button variant="outline" size="lg" className="gap-2.5">
+            <Button variant="outline" size="lg" className="gap-2.5" onClick={() => setVideoOpen(true)}>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground/8">
                 <Play size={9} className="ml-px fill-foreground/70 text-foreground/70" />
               </span>
@@ -191,7 +195,7 @@ export function Hero() {
             className="relative"
             style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
           >
-            {/* Left — Profile (rear) */}
+            {/* Left: Profile (rear) */}
             <motion.div
               className="absolute left-[-118px] top-[78px] z-10 hidden lg:block"
               initial={{ opacity: 0, x: 26, y: 14 }}
@@ -206,7 +210,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Right — Emergency Contacts (third) */}
+            {/* Right: Emergency Contacts (third) */}
             <motion.div
               className="absolute right-[-118px] top-[104px] z-10 hidden lg:block"
               initial={{ opacity: 0, x: -26, y: 14 }}
@@ -221,7 +225,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Center — Map (front) */}
+            {/* Center: Map (front) */}
             <motion.div
               className="relative z-20"
               initial={{ opacity: 0, y: 30, scale: 0.96 }}
@@ -237,6 +241,8 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
+
+      <VideoModal isOpen={videoOpen} onClose={() => setVideoOpen(false)} />
     </section>
   );
 }

@@ -48,9 +48,9 @@ export function IntroProvider({ children }: { children: ReactNode }) {
 
     setShowSplash(true);
 
-    // Let the homepage begin its entrance as the splash starts to dissolve,
-    // creating a soft cross-fade rather than a hard hand-off.
-    const revealTimer = window.setTimeout(() => setReady(true), 1000);
+    // Homepage begins to fade in as the logo exits (at 2.7 s), creating a soft
+    // cross-fade. Timed to the splash timeline: total 3.4 s, exit begins 2.7 s.
+    const revealTimer = window.setTimeout(() => setReady(true), 2700);
     return () => window.clearTimeout(revealTimer);
   }, []);
 

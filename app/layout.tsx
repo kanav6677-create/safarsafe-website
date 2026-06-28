@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Plus_Jakarta_Sans, Geist } from "next/font/google";
+import { Sora, Plus_Jakarta_Sans, Geist, Poppins } from "next/font/google";
 
 import { siteConfig } from "@/lib/site";
 import { IntroProvider } from "@/components/intro-provider";
@@ -24,6 +24,14 @@ const geist = Geist({
   display: "swap",
 });
 
+// Brand wordmark typography (matches the official SafarSafe lockup)
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -35,13 +43,12 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  // TODO(assets): icons reference the official logo at
-  // public/images/logo/safarsafe-logo.png. For a crisp favicon you may
-  // later add app/icon.png and app/apple-icon.png exported from the logo.
+  // For a pixel-perfect favicon add app/icon.png and app/apple-icon.png
+  // exported at 32px and 180px from the SVG.
   icons: {
-    icon: [{ url: "/images/logo/safarsafe-logo.png" }],
-    shortcut: [{ url: "/images/logo/safarsafe-logo.png" }],
-    apple: [{ url: "/images/logo/safarsafe-logo.png" }],
+    icon: [{ url: "/images/logo/safarsafe-logo.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/images/logo/safarsafe-logo.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/images/logo/safarsafe-logo.svg" }],
   },
   keywords: [
     "SafarSafe",
@@ -93,7 +100,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${jakarta.variable} ${sora.variable} ${geist.variable} min-h-dvh font-sans antialiased`}
+        className={`${jakarta.variable} ${sora.variable} ${geist.variable} ${poppins.variable} min-h-dvh font-sans antialiased`}
       >
         <IntroProvider>{children}</IntroProvider>
       </body>

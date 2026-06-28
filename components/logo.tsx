@@ -3,24 +3,22 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * Single source of truth for the official SafarSafe logo file.
- *
- * TODO(assets): Add the official logo export at this exact path:
- *   public/images/logo/safarsafe-logo.png
- * Use the uploaded brand asset as-is. Do not substitute or recreate it.
+ * Single source of truth for the official SafarSafe logo.
+ * Transparent-background PNG (background removed).
  */
 export const LOGO_SRC = "/images/logo/safarsafe-logo.png";
 
 /**
- * The official SafarSafe logo mark.
- * Renders the uploaded brand asset only — never a generated stand-in.
+ * Official SafarSafe logo mark.
  */
 export function LogoMark({
   className,
   priority = false,
+  sizes = "120px",
 }: {
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }) {
   return (
     <span className={cn("relative inline-block h-9 w-9", className)}>
@@ -28,7 +26,7 @@ export function LogoMark({
         src={LOGO_SRC}
         alt="SafarSafe"
         fill
-        sizes="120px"
+        sizes={sizes}
         className="object-contain"
         priority={priority}
       />
@@ -58,7 +56,8 @@ export function Logo({
       {showWordmark && (
         <span
           className={cn(
-            "font-heading text-[1.15rem] font-semibold tracking-[-0.02em] text-foreground",
+            "bg-clip-text font-brand text-[1.15rem] font-bold leading-none tracking-[-0.02em] text-transparent",
+            "bg-[linear-gradient(100deg,#2856D4_0%,#6A37CA_52%,#BE46D0_100%)]",
             wordmarkClassName,
           )}
         >

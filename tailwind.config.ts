@@ -68,6 +68,7 @@ const config: Config = {
         sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
         heading: ["var(--font-sora)", "system-ui", "sans-serif"],
         numeric: ["var(--font-geist)", "ui-monospace", "monospace"],
+        brand: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       keyframes: {
         "fade-up": {

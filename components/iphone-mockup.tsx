@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
  * Premium iPhone mockup with realistic proportions, rounded corners, a
  * Dynamic Island, a subtle screen reflection and a soft shadow.
  *
- * Renders the uploaded app screenshot exactly as provided — no generated
+ * Renders the uploaded app screenshot exactly as provided, no generated
  * or fake interfaces.
  */
 export function IPhoneMockup({

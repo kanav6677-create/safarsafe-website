@@ -1,4 +1,4 @@
-# App screenshots — REQUIRED
+# App screenshots (REQUIRED)
 
 Add the **official** SafarSafe app screenshots here. Use the uploaded files
 exactly as provided. Do not crop, edit, recreate, or generate fake interfaces.

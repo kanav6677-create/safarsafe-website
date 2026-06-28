@@ -98,6 +98,7 @@ export function Navbar() {
               variant="primary"
               size="sm"
               className="hidden h-9 px-5 sm:inline-flex"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Join Beta
             </Button>
@@ -185,7 +186,14 @@ export function Navbar() {
                   </motion.div>
                 ))}
                 <div className="mt-1.5 px-1 pb-1 pt-2">
-                  <Button variant="primary" className="h-11 w-full">
+                  <Button
+                    variant="primary"
+                    className="h-11 w-full"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
                     Join Beta
                   </Button>
                 </div>

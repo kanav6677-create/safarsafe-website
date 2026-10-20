@@ -14,14 +14,14 @@ export function IPhoneMockup({
   className,
   priority = false,
 }: {
-  screenshot: { src: string; alt: string; aspectRatio: string };
+  screenshot: { src: string; alt: string };
   className?: string;
   priority?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "relative w-[244px] rounded-[2.7rem] p-[10px]",
+        "relative aspect-[9/19.5] w-[244px] rounded-[2.7rem] p-[10px]",
         "bg-gradient-to-b from-[#3a3c42] via-[#1c1d21] to-[#0c0d10] shadow-phone",
         className,
       )}
@@ -49,14 +49,14 @@ export function IPhoneMockup({
       />
 
       {/* Screen */}
-      <div className="relative w-full overflow-hidden rounded-[2.15rem] bg-[#f8f7ff] pt-12">
-        <div className="relative w-full" style={{ aspectRatio: screenshot.aspectRatio }}>
+      <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] bg-[#f8f7ff]">
+        <div className="absolute inset-0">
           <Image
             src={screenshot.src}
             alt={screenshot.alt}
             fill
             sizes="248px"
-            className="object-cover"
+            className="object-cover object-center"
             priority={priority}
           />
         </div>

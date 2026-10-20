@@ -23,25 +23,22 @@ const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 /**
  * Official app screenshots from the uploaded files.
- *   PHOTO-2026-09-29-21-51-42_2-...jpg : Home
- *   IMG_2956-...jpg                       : Route / map
- *   PHOTO-2026-09-29-21-51-42-...jpg      : Profile
+ *   IMG_2959-...png     : Home
+ *   Safar_Safe-...png   : Route / map
+ *   IMG_2960-...png     : Profile
  */
 const SCREENS = {
   home: {
-    src: "/images/app/PHOTO-2026-09-29-21-51-42_2-0dd98845-bfea-44be-8dab-5f5d20643e3c.jpg",
+    src: "/images/app/IMG_2959-51bab8ab-327f-4448-96d5-3e005d0c9c59.png",
     alt: "SafarSafe home screen",
-    aspectRatio: "607 / 1024",
   },
   route: {
-    src: "/images/app/IMG_2956-fd300dab-acfe-43d6-9c96-5c58d8197be8.jpg",
+    src: "/images/app/Safar_Safe-51273a4f-72bb-492a-897b-1526b49463d8.png",
     alt: "SafarSafe route map screen",
-    aspectRatio: "596 / 1024",
   },
   profile: {
-    src: "/images/app/PHOTO-2026-09-29-21-51-42-19239b23-91f2-4bff-9f5f-a73105f91b0f.jpg",
+    src: "/images/app/IMG_2960-b61b8725-6a59-4276-a04c-9758640f9c32.png",
     alt: "SafarSafe profile screen",
-    aspectRatio: "614 / 1024",
   },
 } as const;
 
@@ -214,6 +211,7 @@ export function Hero() {
                 <IPhoneMockup
                   className="w-[186px] blur-[0.4px]"
                   screenshot={SCREENS.home}
+                  priority
                 />
               </div>
             </motion.div>
@@ -229,6 +227,7 @@ export function Hero() {
                 <IPhoneMockup
                   className="w-[186px] blur-[0.4px]"
                   screenshot={SCREENS.profile}
+                  priority
                 />
               </div>
             </motion.div>

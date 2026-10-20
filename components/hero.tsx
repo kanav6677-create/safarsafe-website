@@ -22,18 +22,26 @@ function scrollToContact() {
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 /**
- * Official app screenshots. Uses the uploaded files as-is, do not crop,
- * recreate, or fake any interface.
- *   public/images/app/App ss 1.jpg   : Home / map + safe route
- *   public/images/app/app ss 2.jpg   : Profile
- *   public/images/app/app ss 3.jpg   : Emergency Contacts
+ * Official app screenshots from the uploaded files.
+ *   PHOTO-2026-09-29-21-51-42_2-...jpg : Home
+ *   IMG_2956-...jpg                       : Route / map
+ *   PHOTO-2026-09-29-21-51-42-...jpg      : Profile
  */
 const SCREENS = {
-  map: { src: "/images/app/App ss 1.jpg", alt: "SafarSafe home map with safe route" },
-  profile: { src: "/images/app/app ss 2.jpg", alt: "SafarSafe profile screen" },
-  emergency: {
-    src: "/images/app/app ss 3.jpg",
-    alt: "SafarSafe emergency contacts screen",
+  home: {
+    src: "/images/app/PHOTO-2026-09-29-21-51-42_2-0dd98845-bfea-44be-8dab-5f5d20643e3c.jpg",
+    alt: "SafarSafe home screen",
+    aspectRatio: "607 / 1024",
+  },
+  route: {
+    src: "/images/app/IMG_2956-fd300dab-acfe-43d6-9c96-5c58d8197be8.jpg",
+    alt: "SafarSafe route map screen",
+    aspectRatio: "596 / 1024",
+  },
+  profile: {
+    src: "/images/app/PHOTO-2026-09-29-21-51-42-19239b23-91f2-4bff-9f5f-a73105f91b0f.jpg",
+    alt: "SafarSafe profile screen",
+    aspectRatio: "614 / 1024",
   },
 } as const;
 
@@ -195,7 +203,7 @@ export function Hero() {
             className="relative"
             style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
           >
-            {/* Left: Profile (rear) */}
+            {/* Left: Home (rear) */}
             <motion.div
               className="absolute left-[-118px] top-[78px] z-10 hidden lg:block"
               initial={{ opacity: 0, x: 26, y: 14 }}
@@ -205,12 +213,12 @@ export function Hero() {
               <div style={{ transform: "rotate(-9deg)" }}>
                 <IPhoneMockup
                   className="w-[186px] blur-[0.4px]"
-                  screenshot={SCREENS.profile}
+                  screenshot={SCREENS.home}
                 />
               </div>
             </motion.div>
 
-            {/* Right: Emergency Contacts (third) */}
+            {/* Right: Profile (third) */}
             <motion.div
               className="absolute right-[-118px] top-[104px] z-10 hidden lg:block"
               initial={{ opacity: 0, x: -26, y: 14 }}
@@ -220,12 +228,12 @@ export function Hero() {
               <div style={{ transform: "rotate(9deg)" }}>
                 <IPhoneMockup
                   className="w-[186px] blur-[0.4px]"
-                  screenshot={SCREENS.emergency}
+                  screenshot={SCREENS.profile}
                 />
               </div>
             </motion.div>
 
-            {/* Center: Map (front) */}
+            {/* Center: Route / map (front) */}
             <motion.div
               className="relative z-20"
               initial={{ opacity: 0, y: 30, scale: 0.96 }}
@@ -234,7 +242,7 @@ export function Hero() {
             >
               <IPhoneMockup
                 className="w-[232px] sm:w-[248px]"
-                screenshot={SCREENS.map}
+                screenshot={SCREENS.route}
                 priority
               />
             </motion.div>
